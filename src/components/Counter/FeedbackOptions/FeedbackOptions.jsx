@@ -4,18 +4,20 @@ import PropTypes from 'prop-types'; // ES6
 import { Button } from './FeedbackOptions.styled';
 
 
-export const FeedbackOptions = ({ onIncPositive, onIncNeitral, onIncNegative }) => {
+
+export const FeedbackOptions = ({ options, onLeaveFeedback }) => {  
   return (
-    <div>
-      <Button onClick={ onIncPositive }>Positive</Button>
-      <Button onClick={ onIncNeitral }>Neitral</Button>
-      <Button onClick={ onIncNegative }>Negative</Button>
-    </div>
+    options.map((item) => 
+      <Button key={item} onClick={ () => onLeaveFeedback(item) }>
+        { 
+          item.replace(/^[^a-zа-я]*([a-zа-я])/i, (m) => m.toUpperCase() )
+        }
+      </Button>
+    )
   )
 }
 
 FeedbackOptions.propTypes = {
-  onIncPositive : PropTypes.func.isRequired,
-  onIncNeitral : PropTypes.func.isRequired,
-  onIncNegative : PropTypes.func.isRequired,
+  options : PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  onLeaveFeedback : PropTypes.func.isRequired,
 }

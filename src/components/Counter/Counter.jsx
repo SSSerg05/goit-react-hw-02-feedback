@@ -11,49 +11,61 @@ export class Counter extends Component {
   
   static defaultProps = {
     initValuePositive: 0,
-    initValueNeitral: 0,
+    initValueNeutral: 0,
     initValueNegative: 0,
   };
 
   static propTypes = {
     initValuePositive: PropTypes.number,
-    initValueNeitral: PropTypes.number,
+    initValueNeutral: PropTypes.number,
     initValueNegative: PropTypes.number,
   };
   
   state = {
     positive: this.props.initValuePositive,
-    neitral: this.props.initValueNeitral,
+    neutral: this.props.initValueNeutral,
     negative: this.props.initValueNegative,
   }
   
-  incrementPositive = (event) => { 
-    this.setState( prevState => {
+  // incrementPositive = (event) => { 
+  //   this.setState( prevState => {
 
-      return {
-        positive: prevState.positive + 1,
-      };
-    });
-  }
+  //     return {
+  //       positive: prevState.positive + 1,
+  //     };
+  //   });
+  // }
   
-  incrementNeitral = (event) => { 
-    this.setState( prevState => {
+  // incrementNeitral = (event) => { 
+  //   this.setState( prevState => {
 
+  //     return {
+  //       neitral: prevState.neitral + 1,
+  //     };
+  //   });
+  // }
+
+  // incrementNegative = (event) => { 
+  //   this.setState( prevState => {
+
+  //     return {
+  //       negative: prevState.negative + 1,
+  //     };
+  //   });
+  // }
+
+  increment = (option) => { 
+    // console.log(event);
+    // const option = event.target.id;
+    // console.log('id:', event.target.id);
+    // console.log('key:', event.target.key);
+
+    this.setState((prevState) => {
       return {
-        neitral: prevState.neitral + 1,
+        [option]: prevState[option] + 1,
       };
     });
   }
-
-  incrementNegative = (event) => { 
-    this.setState( prevState => {
-
-      return {
-        negative: prevState.negative + 1,
-      };
-    });
-  }
-
 
   countTotalFeedback() { 
     return Object.values(this.state).reduce((acc, item) => acc + item, 0)
@@ -74,16 +86,16 @@ export class Counter extends Component {
     return (
       <div>
         <FeedbackOptions
-            // options={} 
-            // onLeaveFeedback={}
-          onIncPositive={ this.incrementPositive }
-          onIncNeitral={ this.incrementNeitral }
-          onIncNegative={ this.incrementNegative } 
+            options={Object.keys(this.state)} 
+            onLeaveFeedback={this.increment}
+          // onIncPositive={ this.incrementPositive }
+          // onIncNeitral={ this.incrementNeitral }
+          // onIncNegative={ this.incrementNegative } 
         />
         {
           total ? <Statistics 
                     positive = {this.state.positive}
-                    neutral = {this.state.neitral}
+                    neutral = {this.state.neutral}
                     negative = {this.state.negative}
                     total = {total} 
                     positivePercentage = {this.countPositiveFeedbackPercentage()}
