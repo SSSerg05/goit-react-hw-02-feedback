@@ -14,6 +14,9 @@ export class Counter extends Component {
           <button type="button">Neitral</button>
           <button type="button">Negative</button>
         </div>
+
+        <p>Count: <span>0</span></p>
+
       </div>
     );
   }
