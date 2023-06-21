@@ -1,3 +1,7 @@
+import PropTypes from 'prop-types'; // ES6
+
+import { Container } from "./App.styled";
+
 
 export const App = () => {
   return (
@@ -14,8 +18,9 @@ export const App = () => {
         color: '#010101'
       }}
     >
-      its Work!
-
+      <Container>
+        its Work!
+      </Container>
     </div>
   );
 };
