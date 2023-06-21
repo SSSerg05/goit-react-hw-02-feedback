@@ -71,9 +71,6 @@ export class Counter extends Component {
           countNeitrale = {this.state.neitral}
           countNegative = {this.state.negative}
         />
-        {/* <p>CountPositive: <span>{ this.state.positive }</span></p>
-        <p>CountNeitral: <span>{ this.state.neitral }</span></p>
-        <p>CountNegative: <span>{ this.state.negative }</span></p> */}
         
         <p>TotalFeedback: <span>
           {
