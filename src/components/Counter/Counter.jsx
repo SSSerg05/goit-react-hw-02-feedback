@@ -65,7 +65,3 @@ export class Counter extends Component {
     );
   }
 }
-
-Counter.propTypes = {
-  
-}
