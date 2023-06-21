@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types'; // ES6
 
 import { Controls } from './Controls/Controls';
+import { Statistics } from './Statistics/Statistics';
 //import { Button } from './Counter.styled';
 
 export class Counter extends Component {
@@ -65,9 +66,15 @@ export class Counter extends Component {
           onIncNeitral={ this.incrementNeitral }
           onIncNegative={ this.incrementNegative } />
 
-        <p>CountPositive: <span>{ this.state.positive }</span></p>
+        <Statistics 
+          countPositive = {this.state.positive}
+          countNeitrale = {this.state.neitral}
+          countNegative = {this.state.negative}
+        />
+        {/* <p>CountPositive: <span>{ this.state.positive }</span></p>
         <p>CountNeitral: <span>{ this.state.neitral }</span></p>
-        <p>CountNegative: <span>{ this.state.negative }</span></p>
+        <p>CountNegative: <span>{ this.state.negative }</span></p> */}
+        
         <p>TotalFeedback: <span>
           {
             Object.values(this.state).reduce((acc, item) => acc + item, 0)
