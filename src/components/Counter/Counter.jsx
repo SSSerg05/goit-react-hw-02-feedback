@@ -3,34 +3,48 @@ import PropTypes from 'prop-types'; // ES6
 import { Button } from './Counter.styled';
 
 export class Counter extends Component {
-  static defaultProps = {};
-  static propTypes = {};
-  // ========== old shcool code 
-  // constructor() { 
-  //   super();
-    
-  //   this.state = {
-  //     good: 0,
-  //     neitral: 0,
-  //     negative: 0,
-  //   }
-  // }
+  
+  static defaultProps = {
+    initValueGood: 0,
+    initValueNeitral: 0,
+    initValueNegative: 0,
+  };
+
+  static propTypes = {
+    initValueGood: PropTypes.number,
+    initValueNeitral: PropTypes.number,
+    initValueNegative: PropTypes.number,
+  };
   
   // now code
   state = {
-    good: 0,
-    neitral: 0,
-    negative: 0,
+    good: this.props.initValueGood,
+    neitral: this.props.initValueNeitral,
+    negative: this.props.initValueNegative,
   }
   
   incrementGood = (event) => { 
-    console.log("click Good");
+    this.setState( prevState => {
+      return {
+        good: prevState.good + 1,
+      };
+    });
+  }
+  
+  incrementNeitral = (event) => { 
+    this.setState( prevState => {
+      return {
+        neitral: prevState.neitral + 1,
+      };
+    });
+  }
 
-    const count = this.state.good + 1;
-    this.setState({ good: count });
-    
-    // in async code need save event in other value
-    console.log(this.state);
+    incrementNegative = (event) => { 
+    this.setState( prevState => {
+      return {
+        negative: prevState.negative + 1,
+      };
+    });
   }
 
 
@@ -39,11 +53,13 @@ export class Counter extends Component {
       <div>
         <div>
           <Button onClick={ this.incrementGood }>Good</Button>
-          <Button onClick={() => console.log("click Netral")}>Neitral</Button>
-          <Button onClick={() => console.log("click Negative")}>Negative</Button>
+          <Button onClick={ this.incrementNeitral }>Neitral</Button>
+          <Button onClick={ this.incrementNegative }>Negative</Button>
         </div>
 
-        <p>Count: <span>{ this.state.good }</span></p>
+        <p>CountGood: <span>{ this.state.good }</span></p>
+        <p>CountNeitral: <span>{ this.state.neitral }</span></p>
+        <p>CountNegative: <span>{ this.state.negative }</span></p>
 
       </div>
     );
