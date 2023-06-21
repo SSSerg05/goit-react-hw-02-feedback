@@ -1,32 +1,33 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'; // ES6
-import { Button } from './Counter.styled';
+
+import { Controls } from './Controls/Controls';
+//import { Button } from './Counter.styled';
 
 export class Counter extends Component {
   
   static defaultProps = {
-    initValueGood: 0,
+    initValuePositive: 0,
     initValueNeitral: 0,
     initValueNegative: 0,
   };
 
   static propTypes = {
-    initValueGood: PropTypes.number,
+    initValuePositive: PropTypes.number,
     initValueNeitral: PropTypes.number,
     initValueNegative: PropTypes.number,
   };
   
-  // now code
   state = {
-    good: this.props.initValueGood,
+    positive: this.props.initValuePositive,
     neitral: this.props.initValueNeitral,
     negative: this.props.initValueNegative,
   }
   
-  incrementGood = (event) => { 
+  incrementPositive = (event) => { 
     this.setState( prevState => {
       return {
-        good: prevState.good + 1,
+        positive: prevState.positive + 1,
       };
     });
   }
@@ -39,7 +40,7 @@ export class Counter extends Component {
     });
   }
 
-    incrementNegative = (event) => { 
+  incrementNegative = (event) => { 
     this.setState( prevState => {
       return {
         negative: prevState.negative + 1,
@@ -48,19 +49,33 @@ export class Counter extends Component {
   }
 
 
+  // countTotalFeedback = () => { 
+  //   return Object.values(this.state).reduce((acc, item) => acc + item, 0)
+  // } 
+
+  // countPositiveFeedbackPercentage = () => { 
+  //   return this.state.positive / countTotalFeedback();
+  // }
+
   render() {
     return (
       <div>
-        <div>
-          <Button onClick={ this.incrementGood }>Good</Button>
-          <Button onClick={ this.incrementNeitral }>Neitral</Button>
-          <Button onClick={ this.incrementNegative }>Negative</Button>
-        </div>
+        <Controls
+          onIncPositive={ this.incrementPositive }
+          onIncNeitral={ this.incrementNeitral }
+          onIncNegative={ this.incrementNegative } />
 
-        <p>CountGood: <span>{ this.state.good }</span></p>
+        <p>CountPositive: <span>{ this.state.positive }</span></p>
         <p>CountNeitral: <span>{ this.state.neitral }</span></p>
         <p>CountNegative: <span>{ this.state.negative }</span></p>
-
+        <p>TotalFeedback: <span>
+          {
+            Object.values(this.state).reduce((acc, item) => acc + item, 0)
+          }
+        </span></p>
+        
+        {/* <p>AvgPositiveFeedback: <span>{this.countPositiveFeedbackPercentage}</span></p> */}
+        
       </div>
     );
   }
