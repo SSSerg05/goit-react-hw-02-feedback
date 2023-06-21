@@ -3,10 +3,18 @@ import PropTypes from 'prop-types'; // ES6
 import { Button } from './Counter.styled';
 
 export class Counter extends Component {
-
   static defaultProps = {};
-
   static propTypes = {};
+
+  constructor() { 
+    super();
+    
+    this.state = {
+      good: 0,
+      neitral: 0,
+      negative: 0,
+    }
+  }
 
   incrementGood = (event) => { 
     console.log("click Good");
