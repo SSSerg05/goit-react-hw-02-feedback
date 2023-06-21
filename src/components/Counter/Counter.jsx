@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'; // ES6
 
 import { FeedbackOptions } from './FeedbackOptions/FeedbackOptions';
 import { Statistics } from './Statistics/Statistics';
+import { Notification } from './Notification/Notification';
+
 //import { Button } from './Counter.styled';
 
 export class Counter extends Component {
@@ -68,22 +70,25 @@ export class Counter extends Component {
   }
 
   render() {
-
+    const total = this.countTotalFeedback()
     return (
       <div>
         <FeedbackOptions
+            // options={} 
+            // onLeaveFeedback={}
           onIncPositive={ this.incrementPositive }
           onIncNeitral={ this.incrementNeitral }
           onIncNegative={ this.incrementNegative } 
         />
-
-        <Statistics 
-          positive = {this.state.positive}
-          neutral = {this.state.neitral}
-          negative = {this.state.negative}
-          total = {this.countTotalFeedback()} 
-          positivePercentage = {this.countPositiveFeedbackPercentage()}
-        />
+        {
+          total ? <Statistics 
+                    positive = {this.state.positive}
+                    neutral = {this.state.neitral}
+                    negative = {this.state.negative}
+                    total = {total} 
+                    positivePercentage = {this.countPositiveFeedbackPercentage()}
+                  /> : <Notification message="There is no feedback" />
+        }
         
       </div>
     );
