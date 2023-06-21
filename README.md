@@ -19,3 +19,12 @@
 <p>npm i notiflix</p>
 <p>--> use in js/jsx</p>
 <p>import Notiflix from 'notiflix';</p>
+<p></p>
+<p>GitHub - gh-pages
+<p>https://create-react-app.dev/docs/deployment/</p>
+<p>1. add homepage - "homepage": "https://myusername.github.io/my-app"</p>
+<p>2. npm install --save gh-pages</p>
+<P>3. add in  "scripts": {
++   "predeploy": "npm run build",
++   "deploy": "gh-pages -d build",}</p>
+<p>4. npm run deploy</p>
