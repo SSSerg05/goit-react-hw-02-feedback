@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types'; // ES6
 
-import { Button } from './Controls.styled';
+import { Button } from './FeedbackOptions.styled';
 
 
-export const Controls = ({ onIncPositive, onIncNeitral, onIncNegative }) => {
+export const FeedbackOptions = ({ onIncPositive, onIncNeitral, onIncNegative }) => {
   return (
     <div>
       <Button onClick={ onIncPositive }>Positive</Button>
@@ -14,7 +14,7 @@ export const Controls = ({ onIncPositive, onIncNeitral, onIncNegative }) => {
   )
 }
 
-Controls.propTypes = {
+FeedbackOptions.propTypes = {
   onIncPositive : PropTypes.func.isRequired,
   onIncNeitral : PropTypes.func.isRequired,
   onIncNegative : PropTypes.func.isRequired,
