@@ -5,23 +5,32 @@ import { Button } from './Counter.styled';
 export class Counter extends Component {
   static defaultProps = {};
   static propTypes = {};
-
-  constructor() { 
-    super();
+  // ========== old shcool code 
+  // constructor() { 
+  //   super();
     
-    this.state = {
-      good: 0,
-      neitral: 0,
-      negative: 0,
-    }
+  //   this.state = {
+  //     good: 0,
+  //     neitral: 0,
+  //     negative: 0,
+  //   }
+  // }
+  
+  // now code
+  state = {
+    good: 0,
+    neitral: 0,
+    negative: 0,
   }
-
+  
   incrementGood = (event) => { 
     console.log("click Good");
-    console.log(this);
+
+    const count = this.state.good + 1;
+    this.setState({ good: count });
+    
     // in async code need save event in other value
-    const { target } = event;
-    console.log(target);
+    console.log(this.state);
   }
 
 
@@ -29,12 +38,12 @@ export class Counter extends Component {
     return (
       <div>
         <div>
-          <Button onClick={this.incrementGood}>Good</Button>
+          <Button onClick={ this.incrementGood }>Good</Button>
           <Button onClick={() => console.log("click Netral")}>Neitral</Button>
           <Button onClick={() => console.log("click Negative")}>Negative</Button>
         </div>
 
-        <p>Count: <span>0</span></p>
+        <p>Count: <span>{ this.state.good }</span></p>
 
       </div>
     );
