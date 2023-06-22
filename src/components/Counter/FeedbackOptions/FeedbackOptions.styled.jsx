@@ -8,7 +8,8 @@ export const Button = styled.button`
   border: none;
   outline: 1px solid black;
   border-radius: 10px;
-  translate: background-color 250ms liner;
+  transition: background-color 150ms ease-in, 
+              font-weight 150ms ease-in;
 
   &:hover, &:active {
     cursor: pointer;
@@ -20,5 +21,6 @@ export const Button = styled.button`
 
   &:active {
     background-color: tomato;
+    transition: background-color 150ms linear;
   }
 `
