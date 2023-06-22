@@ -9,7 +9,7 @@ export const FeedbackOptions = ({ options, onLeaveFeedback }) => {
     options.map((item) => 
       <Button key={item} onClick={ () => onLeaveFeedback(item) }>
         { 
-          item.replace(/^[^a-zа-я]*([a-zа-я])/i, (m) => m.toUpperCase() )
+          item.replace(/^[^a-zа-я]*([a-zа-я])/i, (m) => m.toUpperCase())
         }
       </Button>
     )

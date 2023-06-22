@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'; // ES6
+import Notiflix from 'notiflix';
 
 import { Section } from '../Section/Section'; 
 import { FeedbackOptions } from './FeedbackOptions/FeedbackOptions';
@@ -30,6 +31,14 @@ export class Counter extends Component {
   
 
   increment = (option) => { 
+    const message = "You leave " + option + " feedback";
+    const obj = {
+      positive: Notiflix.Notify.success,
+      neutral: Notiflix.Notify.info,
+      negative: Notiflix.Notify.warning,
+    } 
+    obj[option](message);
+
     this.setState((prevState) => {
       return {
         [option]: prevState[option] + 1,
