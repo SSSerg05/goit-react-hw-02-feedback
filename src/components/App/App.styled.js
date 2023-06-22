@@ -2,11 +2,12 @@ import styled from '@emotion/styled';
 
 export const Container = styled.div`
     margin: 0 auto;
+    
     display: flex;
-    flexDirection: column;
-    flexWrap: nowrap;
-    justifyContent: center;
-    alignItems: center;
+    flex-wrap: nowrap;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
     fontSize: 40;
     color: #010101;
   `;

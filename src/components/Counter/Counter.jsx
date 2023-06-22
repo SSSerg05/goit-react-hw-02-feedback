@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'; // ES6
 
+import { Section } from '../Section/Section'; 
 import { FeedbackOptions } from './FeedbackOptions/FeedbackOptions';
 import { Statistics } from './Statistics/Statistics';
 import { Notification } from './Notification/Notification';
@@ -27,39 +28,8 @@ export class Counter extends Component {
     negative: this.props.initValueNegative,
   }
   
-  // incrementPositive = (event) => { 
-  //   this.setState( prevState => {
-
-  //     return {
-  //       positive: prevState.positive + 1,
-  //     };
-  //   });
-  // }
-  
-  // incrementNeitral = (event) => { 
-  //   this.setState( prevState => {
-
-  //     return {
-  //       neitral: prevState.neitral + 1,
-  //     };
-  //   });
-  // }
-
-  // incrementNegative = (event) => { 
-  //   this.setState( prevState => {
-
-  //     return {
-  //       negative: prevState.negative + 1,
-  //     };
-  //   });
-  // }
 
   increment = (option) => { 
-    // console.log(event);
-    // const option = event.target.id;
-    // console.log('id:', event.target.id);
-    // console.log('key:', event.target.key);
-
     this.setState((prevState) => {
       return {
         [option]: prevState[option] + 1,
@@ -82,26 +52,29 @@ export class Counter extends Component {
   }
 
   render() {
-    const total = this.countTotalFeedback()
+    const total = this.countTotalFeedback();
+
     return (
       <div>
-        <FeedbackOptions
+        <Section>
+          <FeedbackOptions
             options={Object.keys(this.state)} 
             onLeaveFeedback={this.increment}
-          // onIncPositive={ this.incrementPositive }
-          // onIncNeitral={ this.incrementNeitral }
-          // onIncNegative={ this.incrementNegative } 
-        />
-        {
-          total ? <Statistics 
-                    positive = {this.state.positive}
-                    neutral = {this.state.neutral}
-                    negative = {this.state.negative}
-                    total = {total} 
-                    positivePercentage = {this.countPositiveFeedbackPercentage()}
-                  /> : <Notification message="There is no feedback" />
-        }
-        
+          />
+        </Section>
+
+        <Section title={"Statistics"}>
+          {
+            total ? <Statistics 
+                      positive = {this.state.positive}
+                      neutral = {this.state.neutral}
+                      negative = {this.state.negative}
+                      total = {total} 
+                      positivePercentage = {this.countPositiveFeedbackPercentage()}
+                    />
+                  : <Notification message="There is no feedback" />
+          }
+        </Section>
       </div>
     );
   }
