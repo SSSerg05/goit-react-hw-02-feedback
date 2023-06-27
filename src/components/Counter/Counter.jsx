@@ -54,7 +54,7 @@ export class Counter extends Component {
     const { positive, neutral, negative } = this.state;
 
     return (
-      <div>
+      <>
         <Section title={"Please leave feedback"}>
           <FeedbackOptions
             options={Object.keys(this.state)} 
@@ -74,7 +74,7 @@ export class Counter extends Component {
                   : <Notification message="There is no feedback" />
           }
         </Section>
-      </div>
+      </>
     );
   }
 }
