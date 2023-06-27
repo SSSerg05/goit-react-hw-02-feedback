@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types'; // ES6
 import Notiflix from 'notiflix';
 
 import { Section } from '../Section/Section'; 
@@ -7,43 +6,33 @@ import { FeedbackOptions } from './FeedbackOptions/FeedbackOptions';
 import { Statistics } from './Statistics/Statistics';
 import { Notification } from './Notification/Notification';
 
-//import { Button } from './Counter.styled';
 
-export class Counter extends Component {
-  
-  static defaultProps = {
-    initValuePositive: 0,
-    initValueNeutral: 0,
-    initValueNegative: 0,
-  };
-
-  static propTypes = {
-    initValuePositive: PropTypes.number,
-    initValueNeutral: PropTypes.number,
-    initValueNegative: PropTypes.number,
-  };
-  
-  state = {
-    positive: this.props.initValuePositive,
-    neutral: this.props.initValueNeutral,
-    negative: this.props.initValueNegative,
-  }
-  
-
-  increment = (option) => { 
-    const message = "You leave " + option + " feedback";
+const showMessage = (keyOption) => {
+    const message = "You leave " + keyOption + " feedback";
     const obj = {
       positive: Notiflix.Notify.success,
       neutral: Notiflix.Notify.info,
       negative: Notiflix.Notify.warning,
     } 
-    obj[option](message);
+    obj[keyOption](message);
+}
 
+
+export class Counter extends Component {
+  
+  state = {
+    positive: 0,
+    neutral: 0,
+    negative: 0,
+  }
+  
+  increment = (option) => { 
     this.setState((prevState) => {
       return {
         [option]: prevState[option] + 1,
       };
     });
+    showMessage(option);
   }
 
   countTotalFeedback() { 
@@ -57,15 +46,16 @@ export class Counter extends Component {
       return 0;
     }
 
-    return +(this.state.positive / total * 100).toFixed(0);
+    return +((this.state.positive / total * 100).toFixed(0));
   }
 
   render() {
     const total = this.countTotalFeedback();
+    const { positive, neutral, negative } = this.state;
 
     return (
       <div>
-        <Section>
+        <Section title={"Please leave feedback"}>
           <FeedbackOptions
             options={Object.keys(this.state)} 
             onLeaveFeedback={this.increment}
@@ -75,9 +65,9 @@ export class Counter extends Component {
         <Section title={"Statistics"}>
           {
             total ? <Statistics 
-                      positive = {this.state.positive}
-                      neutral = {this.state.neutral}
-                      negative = {this.state.negative}
+                      positive = {positive}
+                      neutral = {neutral}
+                      negative = {negative}
                       total = {total} 
                       positivePercentage = {this.countPositiveFeedbackPercentage()}
                     />

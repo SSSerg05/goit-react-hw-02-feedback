@@ -8,6 +8,7 @@ export const Button = styled.button`
   border: none;
   outline: 1px solid black;
   border-radius: 10px;
+  text-transform: capitalize;
   transition: background-color 150ms ease-in, 
               font-weight 150ms ease-in;
 
